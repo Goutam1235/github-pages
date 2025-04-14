@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mystical Tarot Readings</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at top, #1c1c2e, #000);
+      color: #fff;
+      font-family: 'Georgia', serif;
+      text-align: center;
+    }
+    header {
+      padding: 2rem;
+      background-color: rgba(0, 0, 0, 0.7);
+      box-shadow: 0 0 20px #7a4e9c;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    p {
+      font-size: 1.2rem;
+    }
+    .card-area {
+      margin: 2rem auto;
+    }
+    button {
+      background: #7a4e9c;
+      color: white;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+      margin: 1rem;
+    }
+    .reading {
+      margin-top: 2rem;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .card-spread {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 1rem;
+      border-radius: 10px;
+      width: 150px;
+      box-shadow: 0 0 10px #7a4e9c;
+    }
+    .card h3 {
+      margin: 0.5rem 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Mystical Tarot Readings</h1>
+    <p>Draw your daily tarot or a full 3-card spread</p>
+  </header>
+
+  <section class="card-area">
+    <button onclick="drawDailyCard()">Draw Daily Card</button>
+    <button onclick="drawThreeCards()">3-Card Spread</button>
+
+    <div class="reading" id="daily-reading"></div>
+    <div class="card-spread" id="three-card-reading"></div>
+  </section>
+
+  <script>
+    const cards = [
+      { name: "The Fool", meaning: "A fresh start, spontaneity, and a leap of faith." },
+      { name: "The Magician", meaning: "Manifestation, power, and resourcefulness." },
+      { name: "The High Priestess", meaning: "Intuition, secrets, and the unconscious mind." },
+      { name: "The Empress", meaning: "Fertility, beauty, and nurturing energy." },
+      { name: "The Emperor", meaning: "Authority, structure, and stability." },
+      { name: "The Hierophant", meaning: "Tradition, wisdom, and guidance." },
+      { name: "The Lovers", meaning: "Love, harmony, and relationships." },
+      { name: "The Chariot", meaning: "Determination, drive, and willpower." },
+      { name: "Strength", meaning: "Courage, patience, and inner strength." },
+      { name: "The Hermit", meaning: "Inner guidance, solitude, and reflection." },
+      { name: "Wheel of Fortune", meaning: "Cycles, change, and destiny." },
+      { name: "Justice", meaning: "Fairness, truth, and law." },
+      { name: "The Hanged Man", meaning: "Letting go, new perspective, and sacrifice." },
+      { name: "Death", meaning: "Endings, transformation, and rebirth." },
+      { name: "Temperance", meaning: "Balance, moderation, and harmony." },
+      { name: "The Devil", meaning: "Addiction, materialism, and temptation." },
+      { name: "The Tower", meaning: "Sudden change, chaos, and awakening." },
+      { name: "The Star", meaning: "Hope, inspiration, and healing." },
+      { name: "The Moon", meaning: "Illusion, fear, and subconscious." },
+      { name: "The Sun", meaning: "Joy, success, and vitality." },
+      { name: "Judgement", meaning: "Reflection, reckoning, and awakening." },
+      { name: "The World", meaning: "Completion, fulfillment, and celebration." }
+    ];
+
+    function drawDailyCard() {
+      const card = cards[Math.floor(Math.random() * cards.length)];
+      document.getElementById("daily-reading").innerHTML = `
+        <h2>Daily Card: ${card.name}</h2>
+        <p>${card.meaning}</p>
+      `;
+    }
+
+    function drawThreeCards() {
+      const shuffled = [...cards].sort(() => 0.5 - Math.random());
+      const selected = shuffled.slice(0, 3);
+      const positions = ["Past", "Present", "Future"];
+      const html = selected.map((card, i) => `
+        <div class="card">
+          <h3>${positions[i]}</h3>
+          <strong>${card.name}</strong>
+          <p>${card.meaning}</p>
+        </div>
+      `).join("");
+      document.getElementById("three-card-reading").innerHTML = html;
+    }
+  </script>
+</body>
+</html>
